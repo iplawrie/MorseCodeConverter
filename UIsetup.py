@@ -4,8 +4,8 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 import sys
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+class UI_MainWindow(object):
+    def setupUI(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1020, 687)
@@ -95,8 +95,8 @@ class Ui_MainWindow(object):
 
 if __name__== "__main__":
     app = QApplication(sys.argv)
-    window = QWidget()
-    ui = UI_Frame()
-    ui.setupUi(window)
+    window = QMainWindow()
+    ui = UI_MainWindow()
+    ui.setupUI(window)
     window.show()
     sys.exit(app.exec_())
