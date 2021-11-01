@@ -2,6 +2,7 @@
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
+import sys
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -92,3 +93,10 @@ class Ui_MainWindow(object):
         self.comboBox.setCurrentText(QCoreApplication.translate("MainWindow", u"New Item", None))
     # retranslateUi
 
+if __name__== "__main__":
+    app = QApplication(sys.argv)
+    window = QWidget()
+    ui = UI_Frame()
+    ui.setupUi(window)
+    window.show()
+    sys.exit(app.exec_())
