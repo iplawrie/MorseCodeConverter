@@ -2,6 +2,7 @@ class MorseConverter:
     def __init__(self, dictionary):
         self.dict = dictionary
 
+#add space after each letter and '/' after each word
     def morsify(self, text):
         output = ""
         length = len(text)
