@@ -1,8 +1,10 @@
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
 import sys
+from PySide2.QtCore import *
+from PySide2.QtWidgets import *
+from MorseConverter import MorseConverter
+from MorseDict import MorseDict
+
 
 class UI_MainWindow(object):
     def setupUI(self, MainWindow):
