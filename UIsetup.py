@@ -1,8 +1,7 @@
 import sys
 from PySide2.QtCore import *
 from PySide2.QtWidgets import *
-from MorseConverter import MorseConverter
-from MorseDict import MorseDict
+import MorseConverter as morse
 
 
 class UI_MainWindow(object):
@@ -98,8 +97,9 @@ class UI_MainWindow(object):
         self.comboBox.setCurrentText(QCoreApplication.translate("MainWindow", u"New Item", None))
     # retranslateUi
 
-    def printInput(self):
-        print("The input is '{}'".format(self.Input.toPlainText()))
+    #perform operations
+    def outputMorse(self):
+        print("The input is '{}'".format(morse.morsify(self.Input.toPlainText())))
 
 if __name__== "__main__":
     app = QApplication(sys.argv)
