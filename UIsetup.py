@@ -82,7 +82,7 @@ class UI_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
 
         #button presses
-        self.submit.clicked.connect(self.printInput)
+        self.submit.clicked.connect(self.outputMorse)
 
     # setupUi
 
