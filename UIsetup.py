@@ -99,7 +99,7 @@ class UI_MainWindow(object):
     # retranslateUi
 
     def printInput(self):
-        print("The input is '{}'".format(self.Input))
+        print("The input is '{}'".format(self.Input.toPlainText()))
 
 if __name__== "__main__":
     app = QApplication(sys.argv)
