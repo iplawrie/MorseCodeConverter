@@ -81,6 +81,10 @@ class UI_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         QMetaObject.connectSlotsByName(MainWindow)
+
+        #button presses
+        self.submit.clicked.connect(self.printInput)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
@@ -93,6 +97,9 @@ class UI_MainWindow(object):
 
         self.comboBox.setCurrentText(QCoreApplication.translate("MainWindow", u"New Item", None))
     # retranslateUi
+
+    def printInput(self):
+        print("The input is '{}'".format(self.input))
 
 if __name__== "__main__":
     app = QApplication(sys.argv)
