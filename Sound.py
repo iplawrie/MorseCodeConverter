@@ -1,5 +1,6 @@
 import winsound
 import time
+from gtts import gTTS
 
 
 class Sound:
@@ -7,7 +8,7 @@ class Sound:
         self.prevChar = ""
         self.dot = None
         self.dash = None
-        self.temporal = 0.1
+        self.temporal = 0.2
 
     def getDot(self):
         return self.dot
@@ -27,10 +28,14 @@ class Sound:
     def getTime(self):
         return self.temporal
 
+    def playText(self, toBePlayed):
+        soundObj = gTTS(text=toBePlayed, lang="en", slow=False)
+        soundObj.save("lastPlayedSound.mp3")
+        winsound.PlaySound("lastPlayedSound.mp3", winsound.SND_FILENAME)
+
     def playSound(self, text):
         self.prevChar = ""
         for character in text:
-            time.sleep(self.temporal)
             if character == " ":
                 if self.prevChar == " ":
                     time.sleep(self.temporal*4)
@@ -51,7 +56,9 @@ class Sound:
                     winsound.PlaySound(self.dash, winsound.SND_FILENAME)
                     time.sleep(self.temporal)
             self.prevChar = character
+        time.sleep(self.temporal)
 
 
 classSound = Sound()
-classSound.playSound(".- .- .-  .- .- .-")
+# classSound.playSound(".- .- .-  .- .- .-")
+classSound.playText("Jeff Wall is the Zodiac Killer")
