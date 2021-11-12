@@ -3,4 +3,4 @@ from MorseDict import MorseDict
 
 dictionary = MorseDict
 conv = MorseConverter(dictionary)
-print(conv.morsify("hello"))
+print(conv.morsify("hello world"))
