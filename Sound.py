@@ -54,9 +54,9 @@ class Sound:
             if os.path.exists("tempFile.wav"):
                 os.remove("tempFile.wav")
         else:
-            print("ffmpeg needs to be installed at C:/ffmpeg/bin/ffmpeg.exe")
+            print("ffmpeg needs to be installed in the project folder")
             print("Get ffmpeg at ffmpeg.org/download.html")
-            print("Be sure to unzip it directly into your C drive!")
+            print("It should be installed already")
 
     def playSound(self, text):
         self.prevChar = ""
@@ -84,6 +84,6 @@ class Sound:
         time.sleep(self.temporal)
 
 
-classSound = Sound()
+# classSound = Sound()
 # classSound.playSound(".- .- .-  .- .- .-")
-classSound.playText("Jeff Wall is the Zodiac Killer")
+# classSound.playText("Jeff Wall is allegedly the Zodiac Killer")
