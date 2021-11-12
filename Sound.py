@@ -40,14 +40,14 @@ class Sound:
         # to the download). Next, it checks if it bugged out last time, and clears any possible leftover data to make
         # sure it doesn't bug out again. Then, it creates a mp3 file with the google text to speech audio. It then
         # converts that to a wav file. Next, it plays the wav file. Finally, it deletes both of the generated files.
-        if os.path.exists('C:/ffmpeg/bin/ffmpeg.exe'):
+        if os.path.exists('ffmpeg.exe'):
             if os.path.exists("tempFile.mp3"):
                 os.remove("tempFile.mp3")
             if os.path.exists("tempFile.wav"):
                 os.remove("tempFile.wav")
             soundObj = gTTS(text=toBePlayed, lang="en", slow=False)
             soundObj.save("tempFile.mp3")
-            subprocess.run(['C:/ffmpeg/bin/ffmpeg', '-i', 'tempFile.mp3', 'tempFile.wav'])
+            subprocess.run(['ffmpeg', '-i', 'tempFile.mp3', 'tempFile.wav'])
             winsound.PlaySound("tempFile.wav", winsound.SND_FILENAME)
             if os.path.exists("tempFile.mp3"):
                 os.remove("tempFile.mp3")
