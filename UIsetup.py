@@ -1,8 +1,8 @@
 import sys
 from PySide2.QtCore import *
 from PySide2.QtWidgets import *
-import MorseConverter as morse
-
+from MorseConverter import *
+from MorseDict import MorseDict
 
 class UI_MainWindow(object):
     def setupUI(self, MainWindow):
@@ -30,7 +30,7 @@ class UI_MainWindow(object):
 
         self.Output = QTextEdit(self.horizontalLayoutWidget)
         self.Output.setObjectName(u"Output")
-
+        #self.Output.setHtml() hopfully we can set the font size
         self.verticalLayout_2.addWidget(self.Output)
 
 
@@ -99,6 +99,11 @@ class UI_MainWindow(object):
 
     #perform operations
     def outputMorse(self):
+
+        morse = MorseConverter(MorseDict)
+
+
+        self.Output.setPlainText(morse.morsify(self.Input.toPlainText()))
         print("The input is '{}'".format(morse.morsify(self.Input.toPlainText())))
 
 if __name__== "__main__":
