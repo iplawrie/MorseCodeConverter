@@ -7,7 +7,7 @@ class MorseConverter:
         output = ""
         length = len(text)
         for i in range(length):
-            output += self.dict[text[i].upper()]
+            output += self.dict[text[i].upper()] + "_"
         return output
     # def unmorsify(self):
     #     return "todo, not implemented yet"
