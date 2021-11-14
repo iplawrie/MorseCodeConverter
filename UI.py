@@ -3,6 +3,7 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from MorseConverter import *
 from MorseDict import MorseDict
+from Sound import *
 
 class UI_MainWindow(object):
     def setupUI(self, MainWindow):
@@ -25,12 +26,13 @@ class UI_MainWindow(object):
         self.verticalLayout_2.setContentsMargins(5, 5, 5, 5)
         self.Input = QTextEdit(self.horizontalLayoutWidget)
         self.Input.setObjectName(u"Input")
+        self.Input.setFontPointSize(14)
 
         self.verticalLayout_2.addWidget(self.Input)
 
         self.Output = QTextEdit(self.horizontalLayoutWidget)
         self.Output.setObjectName(u"Output")
-        #self.Output.setHtml() hopfully we can set the font size
+        self.Output.setFontPointSize(16)
         self.verticalLayout_2.addWidget(self.Output)
 
 
@@ -65,7 +67,7 @@ class UI_MainWindow(object):
         self.comboBox.setObjectName(u"comboBox")
         sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
         self.comboBox.setSizePolicy(sizePolicy)
-        self.comboBox.setMinimumSize(QSize(20, 20))
+        self.comboBox.setMinimumSize(QSize(200, 200))
 
         self.verticalLayout.addWidget(self.comboBox)
 
@@ -82,7 +84,9 @@ class UI_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
 
         #button presses
+        self.sound = Sound()
         self.submit.clicked.connect(self.outputMorse)
+        self.playsound.clicked.connect(self.morseSound)
 
     # setupUi
 
@@ -99,12 +103,14 @@ class UI_MainWindow(object):
 
     #perform operations
     def outputMorse(self):
-
         morse = MorseConverter(MorseDict)
-
-
         self.Output.setPlainText(morse.morsify(self.Input.toPlainText()))
         print("The input is '{}'".format(morse.morsify(self.Input.toPlainText())))
+
+    def morseSound(self):
+        text = self.Output.toPlainText()
+        if text != "":
+            self.sound.playSound(text)
 
 if __name__== "__main__":
     app = QApplication(sys.argv)
