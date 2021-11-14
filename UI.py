@@ -61,13 +61,11 @@ class UI_MainWindow(object):
         self.verticalLayout.addWidget(self.playsound)
 
         self.comboBox = QComboBox(self.horizontalLayoutWidget)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+       #self.comboBox.addItem("")
         self.comboBox.setObjectName(u"comboBox")
         sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
         self.comboBox.setSizePolicy(sizePolicy)
-        self.comboBox.setMinimumSize(QSize(200, 200))
+        self.comboBox.setMinimumSize(QSize(20, 20))
 
         self.verticalLayout.addWidget(self.comboBox)
 
