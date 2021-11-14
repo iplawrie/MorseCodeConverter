@@ -7,7 +7,10 @@ class MorseConverter:
         output = ""
         length = len(text)
         for i in range(length):
-            output += self.dict[text[i].upper()] + "_"
+            output += self.dict[text[i].upper()]
+            #each letter needs a space between
+            #each word need " / " between
         return output
+
     # def unmorsify(self):
     #     return "todo, not implemented yet"
