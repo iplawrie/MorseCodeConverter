@@ -7,7 +7,12 @@ class MorseConverter:
         output = ""
         length = len(text)
         for i in range(length):
-            output += self.dict[text[i].upper()]
+            if text[i] == " ":
+                output += "/ "
+            elif i == len(text)-1:
+                output += self.dict[text[i].upper()]
+            else:
+                output += self.dict[text[i].upper()] + " "
             #each letter needs a space between
             #each word need " / " between
         return output
