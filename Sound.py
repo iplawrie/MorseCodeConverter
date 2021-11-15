@@ -84,6 +84,6 @@ class Sound:
         time.sleep(self.temporal)
 
 
-# classSound = Sound()
+#classSound = Sound()
 # classSound.playSound(".- .- .-  .- .- .-")
-# classSound.playText("Jeff Wall is allegedly the Zodiac Killer")
+#classSound.playText("Jeff Wall is allegedly the Zodiac Killer")
