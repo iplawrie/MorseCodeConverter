@@ -12,6 +12,8 @@ class UI_MainWindow(object):
         MainWindow.resize(1000, 620)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+
+        #Base layout for left and right side of window
         self.horizontalLayoutWidget = QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
         self.horizontalLayoutWidget.setGeometry(QRect(10, 20, 961, 581))
@@ -19,32 +21,38 @@ class UI_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+
+        #Vertical layout for text input
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setSizeConstraint(QLayout.SetNoConstraint)
         self.verticalLayout_2.setContentsMargins(5, 5, 5, 5)
+        #top text input box
         self.Input = QTextEdit(self.horizontalLayoutWidget)
         self.Input.setObjectName(u"Input")
         self.Input.setFontPointSize(14)
         self.Input.setPlaceholderText("Please put sentence to be converted here")
-
         self.verticalLayout_2.addWidget(self.Input)
 
+        #bottom text input box
         self.Output = QTextEdit(self.horizontalLayoutWidget)
         self.Output.setObjectName(u"Output")
         self.Output.setFontPointSize(16)
         self.Output.setPlaceholderText("Morse will be converted here")
         self.verticalLayout_2.addWidget(self.Output)
 
-
+        #add section to base layout
         self.horizontalLayout.addLayout(self.verticalLayout_2)
 
+        #vertical layout for right side buttons
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.verticalLayout.setContentsMargins(5, 5, 5, 5)
+
+        #convert text to morse button
         self.submit = QPushButton(self.horizontalLayoutWidget)
         self.submit.setObjectName(u"submit")
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
@@ -52,28 +60,28 @@ class UI_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.submit.sizePolicy().hasHeightForWidth())
         self.submit.setSizePolicy(sizePolicy)
-
         self.verticalLayout.addWidget(self.submit)
 
+        #play morse sound
         self.playsound = QPushButton(self.horizontalLayoutWidget)
         self.playsound.setObjectName(u"playsound")
         sizePolicy.setHeightForWidth(self.playsound.sizePolicy().hasHeightForWidth())
         self.playsound.setSizePolicy(sizePolicy)
-
         self.verticalLayout.addWidget(self.playsound)
 
+        #combo box to select audio to play for morse
         self.comboBox = QComboBox(self.horizontalLayoutWidget)
        #self.comboBox.addItem("")
         self.comboBox.setObjectName(u"comboBox")
         sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
         self.comboBox.setSizePolicy(sizePolicy)
         self.comboBox.setMinimumSize(QSize(20, 20))
-
         self.verticalLayout.addWidget(self.comboBox)
 
-
+        #add section to base layout
         self.horizontalLayout.addLayout(self.verticalLayout)
 
+        #status bar at bottom of window
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
