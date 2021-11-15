@@ -27,12 +27,14 @@ class UI_MainWindow(object):
         self.Input = QTextEdit(self.horizontalLayoutWidget)
         self.Input.setObjectName(u"Input")
         self.Input.setFontPointSize(14)
+        self.Input.setPlaceholderText("Please put sentence to be converted here")
 
         self.verticalLayout_2.addWidget(self.Input)
 
         self.Output = QTextEdit(self.horizontalLayoutWidget)
         self.Output.setObjectName(u"Output")
         self.Output.setFontPointSize(16)
+        self.Output.setPlaceholderText("Morse will be converted here")
         self.verticalLayout_2.addWidget(self.Output)
 
 
@@ -115,5 +117,6 @@ if __name__== "__main__":
     window = QMainWindow()
     ui = UI_MainWindow()
     ui.setupUI(window)
+    window.setWindowTitle("MIS2100 Morse Converter")
     window.show()
     sys.exit(app.exec_())
