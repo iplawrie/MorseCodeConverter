@@ -31,6 +31,7 @@ class UI_MainWindow(object):
         #top text input box
         self.Input = QTextEdit(self.horizontalLayoutWidget)
         self.Input.setObjectName(u"Input")
+        self.Input.lineWrapMode()
         self.Input.setFontPointSize(14)
         self.Input.setPlaceholderText("Please put sentence to be converted here")
         self.verticalLayout_2.addWidget(self.Input)
@@ -38,6 +39,7 @@ class UI_MainWindow(object):
         #bottom text input box
         self.Output = QTextEdit(self.horizontalLayoutWidget)
         self.Output.setObjectName(u"Output")
+        self.Output.lineWrapMode()
         self.Output.setFontPointSize(16)
         self.Output.setPlaceholderText("Morse will be converted here")
         self.verticalLayout_2.addWidget(self.Output)
