@@ -118,9 +118,9 @@ class UI_MainWindow(object):
         print("The input is '{}'".format(morse.morsify(self.Input.toPlainText())))
 
     def morseSound(self):
-        text = self.Output.toPlainText()
-        if text != "":
-            self.sound.playSound(text)
+        morse = self.Output.toPlainText()
+        if morse != "":
+            self.sound.playSound(morse)
 
 if __name__== "__main__":
     app = QApplication(sys.argv)
