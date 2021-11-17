@@ -2,7 +2,7 @@ class MorseConverter:
     def __init__(self, dictionary):
         self.dict = dictionary
 
-#add space after each letter and '/' after each word
+#newline '\n' needs to be handled
     def morsify(self, text):
         output = ""
         length = len(text)
@@ -13,8 +13,6 @@ class MorseConverter:
                 output += self.dict[text[i].upper()]
             else:
                 output += self.dict[text[i].upper()] + " "
-            #each letter needs a space between
-            #each word need " / " between
         return output
 
     # def unmorsify(self):
