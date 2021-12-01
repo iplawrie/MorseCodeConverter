@@ -11,10 +11,14 @@ import subprocess
 
 
 class Sound:
-    def __init__(self):
+    def __init__(self, foldername = None):
         self.prevChar = ""
-        self.dot = None
-        self.dash = None
+        if foldername is None:
+            self.dot = None
+            self.dash = None
+        else:
+            self.dot = foldername+"/dot.wav"
+            self.dash = foldername+"/dash.wav"
         self.temporal = 0.2
 
     def getDot(self):
@@ -62,7 +66,7 @@ class Sound:
         self.prevChar = ""
         for character in text:
             if character == " ":
-                if self.prevChar == " ":
+                if self.prevChar == "/":
                     time.sleep(self.temporal*4)
                 else:
                     time.sleep(self.temporal*3)
@@ -84,6 +88,6 @@ class Sound:
         time.sleep(self.temporal)
 
 
-#classSound = Sound()
-# classSound.playSound(".- .- .-  .- .- .-")
-#classSound.playText("Jeff Wall is allegedly the Zodiac Killer")
+classSound = Sound()
+classSound.playSound(".- .- .-  .- .- .-")
+# classSound.playText("Jeff Wall is allegedly the Zodiac Killer")
