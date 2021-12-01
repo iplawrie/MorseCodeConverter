@@ -1,6 +1,4 @@
 from MorseConverter import MorseConverter
-from MorseDict import MorseDict
-
-dictionary = MorseDict
-conv = MorseConverter(dictionary)
-print(conv.morsify("hello world"))
+conv = MorseConverter()
+print(conv.morsify("Hello World"))
+print(conv.unmorsify(conv.morsify("Hello\n World")))
