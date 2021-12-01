@@ -114,7 +114,8 @@ class UI_MainWindow(object):
     #perform operations
     def outputMorse(self):
         morse = MorseConverter(MorseDict)
-        self.Output.setPlainText(morse.morsify(self.Input.toPlainText()))
+        text = self.Input.toPlainText()
+        self.Output.setPlainText(morse.morsify(text))
         print("The input is '{}'".format(morse.morsify(self.Input.toPlainText())))
 
     def morseSound(self):
