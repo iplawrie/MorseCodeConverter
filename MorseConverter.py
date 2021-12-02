@@ -18,11 +18,6 @@ class MorseConverter:
                 output += self.dict[text[i].upper()] + " "
         return output
 
-    # def unmorsify(self):
-    #     return "todo, not implemented yet"
-    #         output += self.dict[text[i].upper()] + " "
-    #     return output
-
     def unmorsify(self, text):
         output = ""
         length = len(text)
