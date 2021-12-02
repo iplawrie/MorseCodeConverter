@@ -33,7 +33,7 @@ class UI_MainWindow(object):
         self.Input.setObjectName(u"Input")
         self.Input.lineWrapMode()
         self.Input.setFontPointSize(14)
-        self.Input.setPlaceholderText("Please put sentence to be converted here")
+        self.Input.setPlaceholderText("Please put text here")
         self.verticalLayout_2.addWidget(self.Input)
 
         #bottom text input box
@@ -41,7 +41,7 @@ class UI_MainWindow(object):
         self.Output.setObjectName(u"Output")
         self.Output.lineWrapMode()
         self.Output.setFontPointSize(16)
-        self.Output.setPlaceholderText("Morse will be converted here")
+        self.Output.setPlaceholderText("Please put morse here")
         self.verticalLayout_2.addWidget(self.Output)
 
         #add section to base layout
@@ -55,14 +55,14 @@ class UI_MainWindow(object):
         self.verticalLayout.setContentsMargins(5, 5, 5, 5)
 
         #convert text to morse button
-        self.submit = QPushButton(self.horizontalLayoutWidget)
-        self.submit.setObjectName(u"submit")
+        #self.submit = QPushButton(self.horizontalLayoutWidget)
+        #elf.submit.setObjectName(u"submit")
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.submit.sizePolicy().hasHeightForWidth())
-        self.submit.setSizePolicy(sizePolicy)
-        self.verticalLayout.addWidget(self.submit)
+        #sizePolicy.setHeightForWidth(self.submit.sizePolicy().hasHeightForWidth())
+        #self.submit.setSizePolicy(sizePolicy)
+        #self.verticalLayout.addWidget(self.submit)
 
         #play morse sound
         self.playsound = QPushButton(self.horizontalLayoutWidget)
@@ -95,14 +95,17 @@ class UI_MainWindow(object):
 
         #button presses
         self.sound = Sound()
-        self.submit.clicked.connect(self.outputMorse)
+        self.morse = MorseConverter()
+        #self.submit.clicked.connect(self.outputMorse)
+        self.Input.textChanged.connect(self.outputMorse)
+        self.Output.textChanged.connect(self.outputText)
         self.playsound.clicked.connect(self.morseSound)
 
     # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.submit.setText(QCoreApplication.translate("MainWindow", u"Convert ", None))
+        #self.submit.setText(QCoreApplication.translate("MainWindow", u"Convert ", None))
         self.playsound.setText(QCoreApplication.translate("MainWindow", u"Play Sound ", None))
         self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"New Item", None))
         self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"New Item", None))
@@ -113,10 +116,26 @@ class UI_MainWindow(object):
 
     #perform operations
     def outputMorse(self):
-        morse = MorseConverter(MorseDict)
+        self.Output.textChanged.disconnect(self.outputText)
         text = self.Input.toPlainText()
-        self.Output.setPlainText(morse.morsify(text))
-        print("The input is '{}'".format(morse.morsify(self.Input.toPlainText())))
+        try:
+            morse = self.morse.morsify(text)
+            self.Output.setPlainText(morse)
+        except KeyError:
+            self.Output.setPlainText("'Bad Input'")
+        finally:
+            self.Output.textChanged.connect(self.outputText)
+
+    def outputText(self):
+        self.Input.textChanged.disconnect(self.outputMorse)
+        morse = self.Output.toPlainText()
+        try:
+            text = self.morse.unmorsify(morse)
+            self.Input.setPlainText(text.lower())
+        except KeyError:
+            self.Input.setPlainText("'Bad Input'")
+        finally:
+            self.Input.textChanged.connect(self.outputMorse)
 
     def morseSound(self):
         morse = self.Output.toPlainText()
