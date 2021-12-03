@@ -86,8 +86,3 @@ class Sound:
                     time.sleep(self.temporal)
             self.prevChar = character
         time.sleep(self.temporal)
-
-
-classSound = Sound()
-classSound.playSound(".- .- .-  .- .- .-")
-# classSound.playText("Jeff Wall is allegedly the Zodiac Killer")
