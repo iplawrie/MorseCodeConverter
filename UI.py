@@ -1,8 +1,8 @@
 import sys
+import os
 from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from MorseConverter import *
-from MorseDict import MorseDict
 from Sound import *
 
 class UI_MainWindow(object):
@@ -73,12 +73,13 @@ class UI_MainWindow(object):
 
         #combo box to select audio to play for morse
         self.comboBox = QComboBox(self.horizontalLayoutWidget)
-       #self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.comboBox.clear()
         sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
         self.comboBox.setSizePolicy(sizePolicy)
         self.comboBox.setMinimumSize(QSize(20, 20))
         self.verticalLayout.addWidget(self.comboBox)
+        self.comboBox.addItem('Default')
+        self.comboBox.addItems(self.getFolderName())
 
         #add section to base layout
         self.horizontalLayout.addLayout(self.verticalLayout)
@@ -94,7 +95,6 @@ class UI_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
 
         #button presses
-        self.sound = Sound()
         self.morse = MorseConverter()
         #self.submit.clicked.connect(self.outputMorse)
         self.Input.textChanged.connect(self.outputMorse)
@@ -107,10 +107,6 @@ class UI_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         #self.submit.setText(QCoreApplication.translate("MainWindow", u"Convert ", None))
         self.playsound.setText(QCoreApplication.translate("MainWindow", u"Play Sound ", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"New Item", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"New Item", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"New Item", None))
-
         self.comboBox.setCurrentText(QCoreApplication.translate("MainWindow", u"New Item", None))
     # retranslateUi
 
@@ -138,9 +134,21 @@ class UI_MainWindow(object):
             self.Input.textChanged.connect(self.outputMorse)
 
     def morseSound(self):
+        print(self.comboBox.currentText())
+        soundChoice = self.comboBox.currentText()
+        if soundChoice == "Default":
+            sound = Sound()
+        else:
+            sound = Sound("./Sounds/"+soundChoice)
         morse = self.Output.toPlainText()
-        if morse != "":
-            self.sound.playSound(morse)
+        if morse != "" and morse != "'Bad Input'":
+            sound.playSound(morse)
+
+    def getFolderName(self):
+        folder = "./Sounds"
+        subfolders = [f.name for f in os.scandir(folder) if f.is_dir()]
+        return subfolders
+
 
 if __name__== "__main__":
     app = QApplication(sys.argv)
