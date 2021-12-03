@@ -134,7 +134,7 @@ class UI_MainWindow(object):
             self.Input.textChanged.connect(self.outputMorse)
 
     def morseSound(self):
-        print(self.comboBox.currentText())
+        print("currently playing " + self.comboBox.currentText())
         soundChoice = self.comboBox.currentText()
         if soundChoice == "Default":
             sound = Sound()
