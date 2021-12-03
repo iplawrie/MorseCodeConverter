@@ -4,7 +4,7 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from MorseConverter import *
 from Sound import *
-
+#pyinstaller --onefile filename
 class UI_MainWindow(object):
     def setupUI(self, MainWindow):
         if not MainWindow.objectName():
